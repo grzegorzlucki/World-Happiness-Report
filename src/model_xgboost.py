@@ -43,7 +43,7 @@ plt.title('Scatter plot of Happiness Score')
 plt.legend()
 plt.show()
 
-model_dir = base_dir / 'model'
+model_dir = base_dir.parent / 'models'
 model_dir.mkdir(parents=True, exist_ok=True)
 
 with open(model_dir / 'xgboost_model.pkl', 'wb') as file:

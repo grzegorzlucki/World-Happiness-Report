@@ -10,26 +10,29 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import pickle
 
 base_dir = Path(__file__).resolve().parent
+print(f'base: {base_dir}')
 file_path = base_dir.parent / 'data'
+print(f'file_path: {file_path}')
 
 HappinessScore = pd.read_csv(file_path / 'data_2023.csv', encoding='utf-8')
 
 X = HappinessScore.iloc[:, 2:].values  
 y = HappinessScore.iloc[:, 1].values 
 
-path = base_dir / 'model'
-
+path = base_dir.parent / 'models'
+print(f'path: {path}')
 try:
-    with open(path / 'xgboost_model.pkl', 'rb') as file:
-        regressor = pickle.load(file)
+    with open(f'{path}/xgboost_model.pkl', 'rb') as file:
+        # regressor = pickle.load(file)
+        regressor = joblib.load(f'{path}/xgboost_model.pkl')
     print("Model loaded successfully.")
 except FileNotFoundError:
     print(f"Model file not found.")
     regressor = None
 
 try:
-    with open(path / 'scaler.pkl', 'rb') as file:
-        sc = pickle.load(file)
+    with open(f'{path}/scaler.pkl', 'rb') as file:
+        sc = joblib.load(f'{path}/scaler.pkl')
     print("Scaler loaded successfully.")
 except FileNotFoundError:
     print(f"Scaler file not found.")
