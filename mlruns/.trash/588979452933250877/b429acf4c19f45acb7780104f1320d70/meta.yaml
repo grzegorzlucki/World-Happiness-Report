@@ -1,0 +1,16 @@
+artifact_uri: file:///D:/Python-Projekty/World-Happiness-Report/World-Happiness-Report/mlruns/588979452933250877/b429acf4c19f45acb7780104f1320d70/artifacts
+deleted_time: 1723925571292
+end_time: 1723925445150
+entry_point_name: ''
+experiment_id: '588979452933250877'
+lifecycle_stage: deleted
+run_id: b429acf4c19f45acb7780104f1320d70
+run_name: trial-111
+run_uuid: b429acf4c19f45acb7780104f1320d70
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1723925444986
+status: 3
+tags: []
+user_id: USER

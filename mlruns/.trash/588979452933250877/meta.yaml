@@ -1,0 +1,7 @@
+artifact_location: file:///D:/Python-Projekty/World-Happiness-Report/World-Happiness-Report/mlruns/588979452933250877
+creation_time: 1723925423605
+experiment_id: '588979452933250877'
+last_update_time: 1723925571292
+lifecycle_stage: deleted
+name: XGBR-evaluation-full_dataset
+tags: {}
