@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1724013931122
+current_stage: None
+description: ''
+last_updated_timestamp: 1724013931122
+name: HScore-XGBRegressor
+run_id: 8332c2694aca469fad8520a113481235
+run_link: ''
+source: mlflow-artifacts:/585864123333989407/8332c2694aca469fad8520a113481235/artifacts/model
+status: READY
+status_message: null
+storage_location: mlflow-artifacts:/585864123333989407/8332c2694aca469fad8520a113481235/artifacts/model
+user_id: null
+version: 1

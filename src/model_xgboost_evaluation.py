@@ -10,6 +10,7 @@ from sklearn.metrics import r2_score
 import mlflow
 import optuna
 import pickle
+from mlflow.models import infer_signature
 
 base_dir = Path(__file__).resolve().parent
 file_path = base_dir.parent / 'data' / 'data_2022.csv'
@@ -86,10 +87,14 @@ with mlflow.start_run(run_name = "best_model"):
     
     best_model = XGBRegressor(**best_params)
     best_model.fit(X_train, y_train)
-
+    
+    signature = infer_signature(X_train, best_model.predict(X_train))
+    
     mlflow.xgboost.log_model(
             xgb_model = best_model,
-            artifact_path = "model"
+            artifact_path = "model",
+            signature = signature,
+            input_example = X_train
             )
     mlflow.log_params(best_params)
     
@@ -100,7 +105,7 @@ with mlflow.start_run(run_name = "best_model"):
     model_dir = base_dir.parent / 'models'
     model_dir.mkdir(parents=True, exist_ok=True)
     
-    with open(model_dir / 'xgboost_model.pkl', 'wb') as file:
-        pickle.dump(best_model, file)
+    # with open(model_dir / 'xgboost_model.pkl', 'wb') as file:
+    #     pickle.dump(best_model, file)
 
 print("Best model has been logged to MLflow.")

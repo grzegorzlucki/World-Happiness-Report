@@ -5,11 +5,11 @@ class DataTransformer:
     base_dir = Path(__file__).resolve().parent
     folder_path = base_dir.parent / 'data'
     
-    def data_load(self, file_name) -> pd.DataFrame:            
+    def data_load(self, file_name: str) -> pd.DataFrame:            
         data = pd.read_csv(f'{self.folder_path}\{file_name}.csv', encoding='utf-8')
         return data
     
-    def columns_renamer(self, file_name) -> pd.DataFrame:
+    def columns_renamer(self, file_name: str) -> pd.DataFrame:
         names = {
             'Country name': 'Country',
             'Ladder score': 'Happiness score',

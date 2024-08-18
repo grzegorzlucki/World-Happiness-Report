@@ -1,0 +1,6 @@
+artifact_location: mlflow-artifacts:/585864123333989407
+creation_time: 1724013736049
+experiment_id: '585864123333989407'
+last_update_time: 1724013736049
+lifecycle_stage: active
+name: XGBR-evaluation
