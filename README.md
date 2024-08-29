@@ -126,8 +126,94 @@ Scatter plots and regression lines were generated to visually represent the rela
 ## Conclusion
 This project concludes that there is a significant relationship between GDP per capita and the Happiness Score. The regression model indicates that GDPpc has a strong influence on HS, as shown by the correlation and regression analyses.
 
-<!-- ## Visualization and Analysis Tools
-- **Software**: The statistical analysis and plots were conducted using statistical software (e.g., R, Python).
-- **Understanding**: A basic understanding of statistical methods, such as normality tests, correlation, and regression analysis, is required to interpret the results.
-## Author
-This project was conducted by [Author's Name] as part of a statistical analysis course. -->
+## Machine Learning Analysis
+
+### Task 1: Data Transformation
+The `data_transformation` data_transformation_module preprocesses data from the World Happiness Report. It includes:
+- **Column Renaming**: Standardizes column names.
+- **Data Saving**: Saves transformed datasets as CSV files.
+
+### Task 2: Model Training
+Script: model_xgboost.py
+The `model_xgboost.py` script trains an XGBoost regressor on the 2022 dataset. It includes:
+- **Data Loading**: Reads the 2022 dataset and splits it into training and testing sets.
+- **Feature Scaling**: Applies `StandardScaler` to normalize features
+- **Model Training**: Trains an XGBoost model with predefined hyperparameters.
+- **Model Saving**: Saves the trained model and scaler for future use.
+- **Visualization**: Generates scatter plots comparing predicted vs. actual Happiness Scores.
+
+### Task 3: Model Evaluation
+Script: `model_xgboost_evaluation.py`
+The `model_xgboost_evaluation.py` script evaluates and optimizes the XGBoost model using the 2023 dataset. It involves:
+
+- **Data Preparation**: Loads and scales the 2023 dataset.
+- **Hyperparameter Optimization**: Uses Optuna to find the best model configuration.
+- **MLflow Logging**: Logs the best model and its parameters to the MLflow tracking server.
+
+### Task 4: Model Testing
+Script: `xgboost_test.py`
+The `xgboost_test.py` script tests the best XGBoost model on the 2023 dataset. Key steps include:
+
+- **Model Loading**: Retrieves the best model and scaler from MLflow.
+- **Data Scaling**: Applies the saved scaler to the test data.
+- **Prediction**: Uses the loaded model to predict Happiness Scores.
+- **Visualization**: Creates a scatter plot comparing predicted values with actual values.
+
+### RESULTS
+
+## Machine Learning Model: XGBoost Regressor for Happiness Score Prediction
+
+In this section, we detail the training, evaluation, and deployment of an XGBoost Regressor model used to predict the Happiness Score (HS) based on various features from the dataset. The model was trained and managed using MLflow for experiment tracking and model versioning.
+
+### Model Training
+Script: `model_xgboost.py`
+
+The script `model_xgboost.py` trains an XGBoost Regressor model using the dataset. Key features include:
+
+- **Features**: The model uses various features from the dataset to predict the Happiness Score.
+- **Target**: Happiness Score (HS).
+- **Hyperparameters**:
+  - `colsample_bytree`: 0.9148
+  - `gamma`: 0.0003
+  - `learning_rate`: 0.0978
+  - `max_depth`: 4
+  - `min_child_weight`: 1
+  - `n_estimators`: 73
+  - `reg_alpha`: 0.0195
+  - `reg_lambda`: 0.1217
+  - `subsample`: 0.7451
+- **Performance Metric**: The model achieved an R² score of 0.99995 on the test set, indicating an excellent fit to the data.
+
+### Experiment Tracking with MLflow
+MLflow was used for tracking experiments, managing models, and storing artifacts. The model was registered under the name `HScore-XGBRegressor`.
+
+1. **MLflow Tracking**: The experiments were logged in MLflow, capturing metrics such as RMSE, hyperparameters, and versioning.
+2. **Model Registry**: The final model was registered as version 1 in the MLflow Model Registry.
+
+### Model Evaluation
+Script: `model_xgboost_evaluation.py`
+
+The evaluation script loads the trained XGBoost Regressor from the MLflow Model Registry and performs predictions on the test dataset. The performance of the model is visually compared to the actual values.
+
+1. **Scaler Loading**: The script uses a pre-fitted `StandardScaler` loaded from `scaler.pkl` to standardize the test features.
+2. **Prediction and Visualization**: The predictions are compared against the true values using a scatter plot.
+
+#### Scatter Plot of Predictions
+The plot below shows the predicted Happiness Scores against the actual scores. The blue dots represent predicted values, while the red dots are the actual values.
+
+![Scatter Plot of Happiness Score](images/Figure_1.png)
+
+The plot demonstrates that the predicted values closely follow the actual values, confirming the high accuracy of the model.
+
+### MLflow UI Screenshot
+The screenshot below from the MLflow UI shows the experiments and runs conducted during the model development process:
+
+![MLflow Experiment Tracking](images/mlf11.png)
+
+The MLflow interface displays various runs, along with the metrics and models associated with each run. The best model was selected based on the lowest RMSE and registered in the model registry.
+
+### Model Inference
+Script: `xgboost_test.py`
+
+To perform inference using the registered model:
+The `xgboost_test.py` script loads the latest version of the XGBoost Regressor from MLflow and applies it to new data. The results are visualized in a scatter plot comparing the predicted and real Happiness Scores.
